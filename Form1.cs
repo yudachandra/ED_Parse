@@ -30,7 +30,7 @@ namespace AES_Encrypt_Decrypt
             }
             catch (Exception ex)
             {
-                throw ex;
+                txtBox_output.Text = ex.Message;
             }
         }
 
@@ -42,14 +42,14 @@ namespace AES_Encrypt_Decrypt
             }
             catch (Exception ex)
             {
-                throw ex;
+                txtBox_output.Text = ex.Message;
             }
 
         }
         protected string FNG_Encrypt(string value)
         {
             string keyString = clsCrypt.Get(txt_key_string.Text.Trim());
-            string ivString = keyString.Substring(0, 16);
+            string ivString = clsCrypt.Get(txt_iv_string.Text.Trim());
             clsCrypt.EncryptString(value, keyString, ivString);
 
             return clsCrypt.EncryptString(value, keyString, ivString);
@@ -58,7 +58,7 @@ namespace AES_Encrypt_Decrypt
         protected string FNG_Decrypt(string value)
         {
             string keyString = clsCrypt.Get(txt_key_string.Text.Trim());
-            string ivString = keyString.Substring(0, 16);
+            string ivString = clsCrypt.Get(txt_iv_string.Text.Trim());
             clsCrypt.EncryptString(value, keyString, ivString);
 
             return clsCrypt.DecryptString(value, keyString, ivString);
